@@ -8,9 +8,10 @@ const applicantController = require('../../controllers/applicant.controller');
 const router = express.Router();
 
 router.route('/createApplicant').post(applicantController.createApplicant);
-router.route('/:applicantId').get(applicantController.getApplicant);
+router.route('/getApplicant/:applicantId').get(applicantController.getApplicant);
 router.route('/getApplicants').get(applicantController.getApplicants);
 router.route('/updateApplicant/:applicantId').put(applicantController.updateApplicant);
+router.route('/deleteApplicant/:applicantId').delete(applicantController.deleteApplicant);
 
 // router
 //   .route('/')
@@ -23,4 +24,4 @@ router.route('/updateApplicant/:applicantId').put(applicantController.updateAppl
 //   .patch(auth('manageUsers'), validate(userValidation.updateUser), userController.updateUser)
 //   .delete(auth('manageUsers'), validate(userValidation.deleteUser), userController.deleteUser);
 
-router.route().module.exports = router;
+module.exports = router;

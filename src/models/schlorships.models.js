@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { toJSON, paginate } = require('./plugins');
 
-const schlorshipSchema = mongoose.Schema({
+const scholarshipSchema = mongoose.Schema({
   //   _id: {
   //     type: String,
   //     default: uuidv4,
@@ -23,9 +23,8 @@ const schlorshipSchema = mongoose.Schema({
 });
 
 // add plugin that converts mongoose to json
-schlorshipSchema.plugin(toJSON);
-schlorshipSchema.plugin(paginate);
+scholarshipSchema.plugin(toJSON);
+scholarshipSchema.plugin(paginate);
+const Scholarship = mongoose.model('Scholarship', scholarshipSchema);
 
-const Schlorship = mongoose.model('Schlorship', schlorshipSchema);
-
-module.exports = Schlorship;
+module.exports = Scholarship;

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { toJSON, paginate } = require('./plugins');
 
-const schlorshipSchema = mongoose.Schema({
+const templateSchema = mongoose.Schema({
   //   _id: {
   //     type: String,
   //     default: uuidv4,
@@ -9,23 +9,24 @@ const schlorshipSchema = mongoose.Schema({
 
   name: {
     type: String,
+    required: true,
   },
-  deadline: {
-    type: Date,
+  extension: {
+    type: String,
   },
-  country: {
+  fileContent: {
     type: String,
   },
   //   JSON for criteria and details
-  details: {
-    type: String,
+  usedBy: {
+    type: Number,
   },
 });
 
 // add plugin that converts mongoose to json
-schlorshipSchema.plugin(toJSON);
-schlorshipSchema.plugin(paginate);
+templateSchema.plugin(toJSON);
+templateSchema.plugin(paginate);
 
-const Schlorship = mongoose.model('Schlorship', schlorshipSchema);
+const Template = mongoose.model('Template', templateSchema);
 
-module.exports = Schlorship;
+module.exports = Template;

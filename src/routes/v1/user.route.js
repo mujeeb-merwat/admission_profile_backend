@@ -7,7 +7,9 @@ const userController = require('../../controllers/user.controller');
 const router = express.Router();
 
 router.route('/createUser').post(userController.createUser);
-router.route('/:userId').get(userController.getUser);
+router.route('/getUser/:userId').get(userController.getUser);
+router.route('/updateUser/:userId').put(userController.updateUser);
+router.route('/deleteUser/:userId').delete(userController.deleteUser);
 
 // router
 //   .route('/')

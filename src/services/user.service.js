@@ -1,6 +1,7 @@
 const httpStatus = require('http-status');
 const { User } = require('../models');
 const ApiError = require('../utils/ApiError');
+// const applicantController = require('../controllers/applicant.controller');
 
 /**
  * Create a user
@@ -12,6 +13,11 @@ const createUser = async (userBody) => {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
   }
   return User.create(userBody);
+
+  // const newUser = User.create(userBody);
+  // console.log('newUser : ', newUser);
+
+  // return applicantController.createApplicant(newUser);
 };
 
 /**

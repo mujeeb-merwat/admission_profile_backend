@@ -8,4 +8,4 @@ router.route('/getDocument/:documentId').get(documentController.getDocument);
 router.route('/updateDocument/:documentId').put(documentController.updateDocument);
 router.route('/deleteDocument/:documentId').delete(documentController.deleteDocument);
 
-router.route().module.exports = router;
+module.exports = router;
