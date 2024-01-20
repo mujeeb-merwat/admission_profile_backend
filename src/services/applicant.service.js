@@ -24,8 +24,14 @@ const createApplicant = async (applicantBody) => {
  * @param {number} [options.page] - Current page (default = 1)
  * @returns {Promise<QueryResult>}
  */
-const queryApplicants = async (filter, options) => {
-  const applicants = await Applicant.paginate(filter, options);
+
+// const queryApplicants = async (filter, options) => {
+//   const applicants = await Applicant.paginate(filter, options);
+//   return applicants;
+// };
+
+const queryApplicants = async () => {
+  const applicants = await Applicant.find();
   return applicants;
 };
 

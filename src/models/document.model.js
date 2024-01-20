@@ -6,10 +6,11 @@ const documentSchema = mongoose.Schema({
   //     type: String,
   //     default: uuidv4,
   //   },
+
   // Foreign Keys from applicant table
   applicantId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Applicants',
+    ref: 'Applicant',
   },
   documentName: {
     type: String,
@@ -37,6 +38,6 @@ const documentSchema = mongoose.Schema({
 documentSchema.plugin(toJSON);
 documentSchema.plugin(paginate);
 
-const Document = mongoose.model('Documents', documentSchema);
+const Document = mongoose.model('Document', documentSchema);
 
 module.exports = Document;

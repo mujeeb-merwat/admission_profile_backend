@@ -54,7 +54,7 @@ const applicantSchema = mongoose.Schema(
       type: String,
       required: false,
     },
-    university: {
+    uni: {
       type: String,
       required: false,
     },

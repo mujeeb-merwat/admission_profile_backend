@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require('uuid');
 
 const { toJSON, paginate } = require('./plugins');
 
-const admissionsTrackerSchema = mongoose.Schema({
+const uniTrackerSchema = mongoose.Schema({
   //   _id: {
   //     type: String,
   //     default: uuidv4,
@@ -12,13 +12,13 @@ const admissionsTrackerSchema = mongoose.Schema({
   // Foreign Keys from applicant table
   applicantId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Applicants',
+    ref: 'Applicant',
   },
   // Foreign Keys from applicant table
   sharedWith: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Applicants',
+      ref: 'Applicant',
     },
   ],
   trackData: {
@@ -27,9 +27,9 @@ const admissionsTrackerSchema = mongoose.Schema({
 });
 
 // add plugin that converts mongoose to json
-admissionsTrackerSchema.plugin(toJSON);
-admissionsTrackerSchema.plugin(paginate);
+uniTrackerSchema.plugin(toJSON);
+uniTrackerSchema.plugin(paginate);
 
-const AdmissionsTracker = mongoose.model('AdmissionTracker', admissionsTrackerSchema);
+const UniTracker = mongoose.model('UniTracker', uniTrackerSchema);
 
-module.exports = AdmissionsTracker;
+module.exports = UniTracker;
