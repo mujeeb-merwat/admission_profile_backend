@@ -23,4 +23,4 @@ router.route('/:applicantId').get(applicantController.getApplicant);
 //   .patch(auth('manageUsers'), validate(userValidation.updateUser), userController.updateUser)
 //   .delete(auth('manageUsers'), validate(userValidation.deleteUser), userController.deleteUser);
 
-router.route().module.exports = router;
+module.exports = router;
