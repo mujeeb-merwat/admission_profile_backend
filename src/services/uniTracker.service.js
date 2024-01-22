@@ -6,8 +6,8 @@ const createUnisTrack = async (uniBody) => {
   return UnisTracker.create(uniBody);
 };
 
-const getAllUnistrackers = async () => {
-  const unisTrackers = await UnisTracker.find();
+const getAllUnistrackers = async (applicantId) => {
+  const unisTrackers = await UnisTracker.find({ applicantId: applicantId });
   return unisTrackers;
 };
 

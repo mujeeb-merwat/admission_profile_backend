@@ -4,7 +4,12 @@ const catchAsync = require('../utils/catchAsync');
 const { documentService } = require('../services');
 
 const createDocument = catchAsync(async (req, res) => {
-  const document = await documentService.createDocument(req.body);
+  var documentBody = req.body;
+
+  documentBody['lastReviewed'] = new Date();
+  documentBody['lastOpened'] = new Date();
+
+  const document = await documentService.createDocument(documentBody);
   res.status(httpStatus.CREATED).send(document);
 });
 const getApplicantDocuments = catchAsync(async (req, res) => {

@@ -8,9 +8,12 @@ const documentSchema = mongoose.Schema({
   //   },
 
   // Foreign Keys from applicant table
+  // applicantId: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'Applicant',
+  // },
   applicantId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Applicant',
+    type: String,
   },
   documentName: {
     type: String,
@@ -21,11 +24,10 @@ const documentSchema = mongoose.Schema({
   score: {
     type: Number,
   },
-  file: {
+  documentContent: {
     data: Buffer,
     contentType: String,
   },
-  documentContent: {},
   lastReviewed: {
     type: Date,
   },

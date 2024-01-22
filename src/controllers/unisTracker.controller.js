@@ -10,7 +10,8 @@ const createUnisTrack = catchAsync(async (req, res) => {
 });
 
 const getAllUnisTrackers = catchAsync(async (req, res) => {
-  const result = await unisTrackerService.getAllUnistrackers(filter, options);
+  console.log('res.params.applicantId : ', req.params.applicantId);
+  const result = await unisTrackerService.getAllUnistrackers(req.params.applicantId);
   res.send(result);
 });
 

@@ -4,6 +4,8 @@ const userRoute = require('./user.route');
 const applicantRoute = require('./applicant.route');
 const documentRoute = require('./document.route');
 const unisTrackerRoute = require('./unisTracker.route');
+const scholarshipRoute = require('./scholarship.route');
+const templateRoute = require('./template.route');
 const docsRoute = require('./docs.route');
 const config = require('../../config/config');
 
@@ -29,6 +31,14 @@ const defaultRoutes = [
   {
     path: '/unisTracker',
     route: unisTrackerRoute,
+  },
+  {
+    path: '/scholarship',
+    route: scholarshipRoute,
+  },
+  {
+    path: '/template',
+    route: templateRoute,
   },
 ];
 

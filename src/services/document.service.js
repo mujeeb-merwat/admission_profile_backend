@@ -2,11 +2,11 @@ const httpStatus = require('http-status');
 const { Document } = require('../models');
 const ApiError = require('../utils/ApiError');
 
-const createDocument = async (documentContent) => {
-  return Document.create(documentContent);
+const createDocument = async (document) => {
+  return Document.create(document);
 };
 
-const getAllDocumentsById = async (applicantId) => {
+const getApplicantDocuments = async (applicantId) => {
   const documents = await Document.find({ applicantId: applicantId });
   return documents;
 };
@@ -37,7 +37,7 @@ const deleteDocumentById = async (documentId) => {
 module.exports = {
   createDocument,
   getDocumentById,
-  getAllDocumentsById,
+  getApplicantDocuments,
   updateDocumentById,
   deleteDocumentById,
 };
