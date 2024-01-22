@@ -7,3 +7,4 @@ module.exports.documentService = require('./document.service');
 module.exports.unisTrackerService = require('./uniTracker.service');
 module.exports.scholarshipService = require('./scholarship.service');
 module.exports.templateService = require('./template.service');
+module.exports.staticContentService = require('./staticContent.service');

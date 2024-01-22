@@ -6,6 +6,7 @@ const documentRoute = require('./document.route');
 const unisTrackerRoute = require('./unisTracker.route');
 const scholarshipRoute = require('./scholarship.route');
 const templateRoute = require('./template.route');
+const staticContentRoute = require('./staticContent.route');
 const docsRoute = require('./docs.route');
 const config = require('../../config/config');
 
@@ -39,6 +40,10 @@ const defaultRoutes = [
   {
     path: '/template',
     route: templateRoute,
+  },
+  {
+    path: '/staticContent',
+    route: staticContentRoute,
   },
 ];
 
