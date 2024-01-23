@@ -5,14 +5,22 @@ const catchAsync = require('../utils/catchAsync');
 const { applicantService } = require('../services');
 
 const createApplicant = catchAsync(async (req, res) => {
+  console.log('from Applicant');
+  console.log('req.body : ', req.body);
   const applicant = await applicantService.createApplicant(req.body);
+  console.log('applicant : ', applicant);
   res.status(httpStatus.CREATED).send(applicant);
 });
 
+// const getApplicants = catchAsync(async (req, res) => {
+//   const filter = pick(req.query, ['name', 'role']);
+//   const options = pick(req.query, ['sortBy', 'limit', 'page']);
+//   const result = await userService.queryUsers(filter, options);
+//   res.send(result);
+// });
+
 const getApplicants = catchAsync(async (req, res) => {
-  const filter = pick(req.query, ['name', 'role']);
-  const options = pick(req.query, ['sortBy', 'limit', 'page']);
-  const result = await userService.queryUsers(filter, options);
+  const result = await applicantService.queryApplicants();
   res.send(result);
 });
 

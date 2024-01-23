@@ -2,10 +2,14 @@ const httpStatus = require('http-status');
 const pick = require('../utils/pick');
 const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
-const { userService } = require('../services');
+const { userService, applicantService } = require('../services');
 
 const createUser = catchAsync(async (req, res) => {
   const user = await userService.createUser(req.body);
+  console.log('USER : ', user);
+  applicantService.createApplicant({
+    userId: user?._id,
+  });
   res.status(httpStatus.CREATED).send(user);
 });
 
@@ -30,6 +34,7 @@ const updateUser = catchAsync(async (req, res) => {
 });
 
 const deleteUser = catchAsync(async (req, res) => {
+  console.log('req.params.userId : ', req.params.userId);
   await userService.deleteUserById(req.params.userId);
   res.status(httpStatus.NO_CONTENT).send();
 });

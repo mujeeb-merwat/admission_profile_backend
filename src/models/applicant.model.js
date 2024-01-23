@@ -10,28 +10,16 @@ const applicantSchema = mongoose.Schema(
     //   type: String,
     //   default: uuidv4,
     // },
-    name: {
-      type: String,
+
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
       required: true,
-      trim: true,
     },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      trim: true,
-      lowercase: true,
-      validate(value) {
-        if (!validator.isEmail(value)) {
-          throw new Error('Invalid email');
-        }
-      },
-    },
+
     phoneNumber: {
       type: String,
-      required: false,
-      unique: true,
-      trim: true,
+      // unique: true,
       // validate(value){
       //     if(!validator.isPhoneNumber(value)){
       //         throw new Error('Invalid phone number')
@@ -40,69 +28,42 @@ const applicantSchema = mongoose.Schema(
     },
     subjectLine: {
       type: String,
-      required: false,
     },
     description: {
       type: String,
-      required: false,
     },
     previousEducation: {
       type: String,
-      required: false,
     },
     discipline: {
       type: String,
-      required: false,
     },
     university: {
       type: String,
-      required: false,
     },
-    // connectionList: [
-    //   {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Applicant',
-    //   },
-    // ],
-    // favouriteSchlorships: [
-    //   {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Schlorships',
-    //   },
-    // ],
-    // favouriteCountries: [
-    //   {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Countries',
-    //   },
-    // ],
+    connectionList: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Applicant',
+      },
+    ],
+    favouriteSchlorships: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Scholarship',
+      },
+    ],
+    favouriteCountries: [
+      {
+        type: String,
+      },
+    ],
     // favouriteAdvisors: [
     //   {
     //     type: mongoose.Schema.Types.ObjectId,
     //     ref: 'Advisors',
     //   },
     // ],
-    password: {
-      type: String,
-      required: true,
-      trim: true,
-      minlength: 8,
-      validate(value) {
-        if (!value.match(/\d/) || !value.match(/[a-zA-Z]/)) {
-          throw new Error('Password must contain at least one letter and one number');
-        }
-      },
-      private: true, // used by the toJSON plugin
-    },
-    role: {
-      type: String,
-      enum: roles,
-      default: 'applicant',
-    },
-    isEmailVerified: {
-      type: Boolean,
-      default: false,
-    },
   },
   {
     timestamps: true,
@@ -112,35 +73,6 @@ const applicantSchema = mongoose.Schema(
 // add plugin that converts mongoose to json
 applicantSchema.plugin(toJSON);
 applicantSchema.plugin(paginate);
-
-/**
- * Check if email is taken
- * @param {string} email - The user's email
- * @param {ObjectId} [excludeUserId] - The id of the user to be excluded
- * @returns {Promise<boolean>}
- */
-applicantSchema.statics.isEmailTaken = async function (email, excludeUserId) {
-  const user = await this.findOne({ email, _id: { $ne: excludeUserId } });
-  return !!user;
-};
-
-/**
- * Check if password matches the user's password
- * @param {string} password
- * @returns {Promise<boolean>}
- */
-applicantSchema.methods.isPasswordMatch = async function (password) {
-  const user = this;
-  return bcrypt.compare(password, user.password);
-};
-
-applicantSchema.pre('save', async function (next) {
-  const user = this;
-  if (user.isModified('password')) {
-    user.password = await bcrypt.hash(user.password, 8);
-  }
-  next();
-});
 
 /**
  * @typedef User

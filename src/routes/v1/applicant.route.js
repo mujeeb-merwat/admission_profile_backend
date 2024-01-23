@@ -8,9 +8,10 @@ const applicantController = require('../../controllers/applicant.controller');
 const router = express.Router();
 
 router.route('/createApplicant').post(applicantController.createApplicant);
-router.route('/:applicantId').get(applicantController.getApplicant);
-// router.route('/getApplicants').get(applicantController.getApplicants);
-// router.route('/updateApplicant/:applicantId').put(applicantController.updateApplicant);
+router.route('/getApplicant/:applicantId').get(applicantController.getApplicant);
+router.route('/getApplicants').get(applicantController.getApplicants);
+router.route('/updateApplicant/:applicantId').put(applicantController.updateApplicant);
+router.route('/deleteApplicant/:applicantId').delete(applicantController.deleteApplicant);
 
 // router
 //   .route('/')
