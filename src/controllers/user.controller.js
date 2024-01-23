@@ -4,6 +4,10 @@ const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
 const { userService, applicantService } = require('../services');
 
+const home = catchAsync(async (req, res) => {
+  res.status(httpStatus.CREATED).send('Its working');
+});
+
 const createUser = catchAsync(async (req, res) => {
   const user = await userService.createUser(req.body);
   console.log('USER : ', user);
@@ -40,6 +44,7 @@ const deleteUser = catchAsync(async (req, res) => {
 });
 
 module.exports = {
+  home,
   createUser,
   getUsers,
   getUser,
